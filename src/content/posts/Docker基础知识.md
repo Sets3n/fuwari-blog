@@ -3,7 +3,7 @@ title: Docker基础知识
 published: 2025-07-09
 description: 'Docker基础知识'
 image: ''
-tags: ["docker", "k8s"]
+tags: ['docker', 'k8s']
 category: 'Docker&k8s'
 draft: false 
 lang: ''
