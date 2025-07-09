@@ -13,7 +13,7 @@ docker inspect 容器名，可以看到容器的cmd执行的命令
 docker inspect 容器名字 | grep -i pid
 查看到容器的进程号，根据进程号查找父进程
 可以看到容器的父进程是runc
-```
+```bash
 [root@jmp cgroup]# docker inspect b1 | grep -i pid
             "Pid": 21625,
             "PidMode": "",
@@ -28,7 +28,7 @@ root     21606     1  0 00:30 ?        00:00:00 /usr/local/bin/containerd-shim-r
 ## 容器的namespce
 查看系统namespace：`lsns`
 ### systemd进程的namespace
-```
+```bash
 [root@jmp cgroup]# lsns | grep systemd
 4026531836 pid      122     1 root    /usr/lib/systemd/systemd --switched-root --system --deserialize 22
 4026531837 user     134     1 root    /usr/lib/systemd/systemd --switched-root --system --deserialize 22
@@ -43,7 +43,7 @@ root     21606     1  0 00:30 ?        00:00:00 /usr/local/bin/containerd-shim-r
 `ps -ef | grep vim
 `lixuebin 22846  0.6  0.1 151488  5240 pts/2    S+   01:02  `` 0:00 vim
 拿到pid通过/proc/pid/ns查看namespace
-```
+```bash
 [root@jmp cgroup]# ll /proc/22846/ns
 总用量 0
 lrwxrwxrwx 1 lixuebin lixuebin 0 5月  22 01:02 ipc -> ipc:[4026531839]
@@ -60,14 +60,14 @@ lrwxrwxrwx 1 lixuebin lixuebin 0 5月  22 01:02 uts -> uts:[4026531838]
 启动一个容器
 `docker run -it --rm --name b1 busybox`
 查看pid
-```
+```bash
 [root@jmp cgroup]# docker inspect b1 | grep -i pid
             "Pid": 21625,
             "PidMode": "",
             "PidsLimit": null,
 ```
 查看namespace
-```
+```bash
 [root@jmp cgroup]# ll /proc/22846/ns
 总用量 0
 lrwxrwxrwx 1 lixuebin lixuebin 0 5月  22 01:02 ipc -> ipc:[4026531839]
